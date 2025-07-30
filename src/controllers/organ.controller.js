@@ -15,8 +15,6 @@ const getLanguageField = (lang, type) => {
 const formatOrgan = (organ, lang, req) => {
   const nameField = getLanguageField(lang, "name");
   const descriptionField = getLanguageField(lang, "description");
-  const baseUrl = `${req.protocol}://${req.get("host")}`;
-  const fullUrl = `${baseUrl}/api/organs/${organ._id}`;
 
   return {
     _id: organ._id,
@@ -29,7 +27,6 @@ const formatOrgan = (organ, lang, req) => {
     descriptionRu: organ.descriptionRu,
     descriptionUz: organ.descriptionUz,
     model: organ.model,
-    url: fullUrl,
   };
 };
 
