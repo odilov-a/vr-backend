@@ -12,9 +12,12 @@ const getLanguageField = (lang, type) => {
   return fields[type]?.[lang];
 };
 
-const formatOrgan = (organ, lang) => {
+const formatOrgan = (organ, lang, req) => {
   const nameField = getLanguageField(lang, "name");
   const descriptionField = getLanguageField(lang, "description");
+  const baseUrl = `${req.protocol}://${req.get("host")}`;
+  const fullUrl = `${baseUrl}/api/organs/${organ._id}`;
+
   return {
     _id: organ._id,
     name: organ[nameField],
@@ -26,6 +29,7 @@ const formatOrgan = (organ, lang) => {
     descriptionRu: organ.descriptionRu,
     descriptionUz: organ.descriptionUz,
     model: organ.model,
+    url: fullUrl,
   };
 };
 
@@ -33,7 +37,7 @@ exports.getAllOrgans = async (req, res) => {
   try {
     const { lang } = req.query;
     const organs = await Organ.find({ isDeleted: false });
-    const result = organs.map((organ) => formatOrgan(organ, lang));
+    const result = organs.map((organ) => formatOrgan(organ, lang, req));
     return res.json({ data: result.reverse() });
   } catch (error) {
     return res.status(500).json({ message: error.message });
@@ -46,7 +50,7 @@ exports.getOrganById = async (req, res) => {
     if (!organ) {
       return res.status(404).json({ message: "Organ not found" });
     }
-    return res.json({ data: formatOrgan(organ, req.query.lang) });
+    return res.json({ data: formatOrgan(organ, req.query.lang, req) });
   } catch (error) {
     return res.status(500).json({ message: error.message });
   }
