@@ -4,9 +4,9 @@ const Student = require("../models/Student.js");
 
 exports.getAllStudents = async (req, res) => {
   try {
-    const students = await Student.find("-password", { isDeleted: false }).populate(
-      "books"
-    );
+    const students = await Student.find({ isDeleted: false })
+      .select("-password")
+      .populate("books");
     return res.json({ data: students });
   } catch (error) {
     return res.status(500).json({ error: error.message });
@@ -17,7 +17,9 @@ exports.getMeStudent = async (req, res) => {
   try {
     const student = await Student.findById(req.student.id, {
       isDeleted: false,
-    }).populate("books");
+    })
+      .select("-password")
+      .populate("books");
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
@@ -45,7 +47,9 @@ exports.getStudentById = async (req, res) => {
   try {
     const student = await Student.findById(req.params.id, {
       isDeleted: false,
-    }).populate("books");
+    })
+      .select("-password")
+      .populate("books");
     if (!student) {
       return res.status(404).json({ message: "Student not found" });
     }
