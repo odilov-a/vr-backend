@@ -25,8 +25,7 @@ const formatOrgan = (organ, lang) => {
     descriptionEn: organ.descriptionEn,
     descriptionRu: organ.descriptionRu,
     descriptionUz: organ.descriptionUz,
-    type: organ.type,
-    photoUrls: organ.photoUrls,
+    model: organ.model,
   };
 };
 

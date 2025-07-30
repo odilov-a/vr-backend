@@ -25,17 +25,10 @@ const organSchema = new Schema(
       type: String,
       required: true,
     },
-    type: {
-      type: Number,
-      enum: [1, 2], // 1 = male organ, 2 = female organ
+    model: {
+      type: String,
       required: true,
     },
-    photoUrls: [
-      {
-        url: { type: String, required: true },
-        id: { type: String, required: true },
-      },
-    ],
     isDeleted: {
       type: Boolean,
       default: false,
