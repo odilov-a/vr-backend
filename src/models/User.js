@@ -13,6 +13,11 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
+    username: {
+      type: String,
+      required: true,
+      unique: [true, "Username already exists"],
+    },
     email: {
       type: String,
       unique: [true, "Email already exists"],
@@ -25,7 +30,7 @@ const userSchema = new Schema(
     ],
     role: {
       type: String,
-      default: "USER",
+      default: "user",
       required: true,
     },
     lastLogin: {

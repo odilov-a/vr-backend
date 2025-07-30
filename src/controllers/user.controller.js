@@ -33,6 +33,7 @@ exports.getMeUser = async (req, res) => {
         lastName: user.lastName,
         photoUrl: user.photoUrl,
         isActive: user.isActive,
+        username: user.username,
       },
     });
   } catch (error) {
@@ -72,8 +73,8 @@ exports.registerUser = async (req, res) => {
 
 exports.loginUser = async (req, res) => {
   try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ email });
+    const { username, password } = req.body;
+    const user = await User.findOne({ username });
     if (!user) {
       return res.status(404).json({ message: "User not found" });
     }
@@ -98,7 +99,7 @@ exports.loginUser = async (req, res) => {
       data: {
         token,
         role: user.role,
-        email: user.email,
+        username: user.username,
         isActive: user.isActive,
         lastLogin: user.lastLogin,
       },
