@@ -4,8 +4,8 @@ const { authenticate } = require("../middlewares/auth.middleware.js");
 const { requireRole } = require("../middlewares/role.middleware.js");
 const organRouter = Router();
 
-organRouter.get("/", authenticate, requireRole(["admin", "user"]), organController.getAllOrgans);
-organRouter.get("/:id", authenticate, requireRole(["admin", "user"]), organController.getOrganById);
+organRouter.get("/", authenticate, requireRole(["admin", "student"]), organController.getAllOrgans);
+organRouter.get("/:id", authenticate, requireRole(["admin", "student"]), organController.getOrganById);
 
 organRouter.post("/", authenticate, requireRole(["admin"]), organController.createOrgan);
 organRouter.put("/:id", authenticate, requireRole(["admin"]), organController.updateOrgan);
