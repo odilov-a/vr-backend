@@ -1,4 +1,4 @@
-const User = require("../models/User.js");
+const Student = require("../models/Student.js");
 const Book = require("../models/Book.js");
 
 exports.buyBook = async (req, res) => {
@@ -9,12 +9,12 @@ exports.buyBook = async (req, res) => {
     if (!book) {
       return res.status(404).json({ message: "Book not found" });
     }
-    const user = await User.findOne({ _id: userId, isDeleted: false });
+    const user = await Student.findOne({ _id: userId, isDeleted: false });
     if (!user) {
-      return res.status(404).json({ message: "User not found" });
+      return res.status(404).json({ message: "Student not found" });
     }
     if (user.books.includes(bookId)) {
-      return res.status(400).json({ message: "User already owns this book" });
+      return res.status(400).json({ message: "Student already owns this book" });
     }
     user.books.push(bookId);
     await user.save();

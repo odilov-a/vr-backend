@@ -12,8 +12,8 @@ exports.authenticate = (req, res, next) => {
         req.admin = decoded;
         req.userId = decoded.id;
         break;
-      case "user":
-        req.user = decoded;
+      case "student":
+        req.student = decoded;
         req.userId = decoded.id;
         break;
       default:
