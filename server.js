@@ -20,7 +20,7 @@ app.use(requestLogger);
 app.use("/api", router);
 
 app.get("/", (req, res) => {
-  return res.json({ message: "API server is running!" });
+  return res.json({ message: "API is running!" });
 });
 
 app.listen(PORT, "0.0.0.0", () => {

@@ -20,9 +20,9 @@ app.use(requestLogger);
 app.use("/api", router);
 app.use("/uploads", express.static("uploads"));
 app.get("/", (req, res) => {
-  return res.json({ message: "CDN server is running!" });
+  return res.json({ message: "CDN is running!" });
 });
 
 app.listen(PORT_CDN, "0.0.0.0", () =>
-  console.log(`CDN Server is running on port ${PORT_CDN}`)
+  console.log(`CDN is running on port ${PORT_CDN}`)
 );
