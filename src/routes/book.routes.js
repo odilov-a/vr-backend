@@ -4,8 +4,8 @@ const { authenticate } = require("../middlewares/auth.middleware.js");
 const { requireRole } = require("../middlewares/role.middleware.js");
 const bookRouter = Router();
 
-bookRouter.get("/", authenticate, requireRole(["admin", "student"]), bookController.getAllBooks);
-bookRouter.get("/:id", authenticate, requireRole(["admin", "student"]), bookController.getBookById);
+bookRouter.get("/", bookController.getAllBooks);
+bookRouter.get("/:id", bookController.getBookById);
 
 bookRouter.post("/", authenticate, requireRole(["admin"]), bookController.createBook);
 bookRouter.put("/:id", authenticate, requireRole(["admin"]), bookController.updateBook);

@@ -27,6 +27,7 @@ const formatBook = (book, lang) => {
     descriptionUz: book.descriptionUz,
     price: book.price,
     photoUrls: book.photoUrls,
+    pdfUrls: book.pdfUrls,
   };
 };
 

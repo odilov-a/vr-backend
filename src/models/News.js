@@ -1,15 +1,15 @@
 const { Schema, model } = require("mongoose");
-const bookSchema = new Schema(
+const newsSchema = new Schema(
   {
-    nameUz: {
+    titleUz: {
       type: String,
       required: true,
     },
-    nameRu: {
+    titleRu: {
       type: String,
       required: true,
     },
-    nameEn: {
+    titleEn: {
       type: String,
       required: true,
     },
@@ -25,17 +25,7 @@ const bookSchema = new Schema(
       type: String,
       required: true,
     },
-    price: {
-      type: Number,
-      required: true,
-    },
     photoUrls: [
-      {
-        url: { type: String, required: true },
-        id: { type: String, required: true },
-      },
-    ],
-    pdfUrls: [
       {
         url: { type: String, required: true },
         id: { type: String, required: true },
@@ -55,5 +45,5 @@ const bookSchema = new Schema(
   }
 );
 
-const Book = model("Book", bookSchema);
-module.exports = Book;
+const News = model("News", newsSchema);
+module.exports = News;
